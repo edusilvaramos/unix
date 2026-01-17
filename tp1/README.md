@@ -24,12 +24,21 @@ ps2 : J’ai créé une deuxième VM (server2), parce que sur la première, j’
 
 ### La Connection: 
 
+pour la config: J’ai édité le fichier de configuration du serveur SSH (/etc/ssh/sshd_config) et j’ai modifié la partie de la config qui me concerne. donc, "PermitRootLogin yes" et "PasswordAuthentication yes". Après la modification, j’ai redémarré le service SSH pour que la configuration soit prise en compte.
+
 pour Trouver l’adresse IP de la VM - dans Debian: ip a
 Commande sur le pc : ssh root@192.168.1.59
 j’entre le mot de passe root que j’ai défini dans la config.
 connexion réussie, j’arrive sur le shell Debian avec :
 
 root@server2:~#
+
+sources: 
+
+man 
+https://www.it-connect.fr/chapitres/openssh-configuration-du-serveur-ssh/
+https://docs.redhat.com/fr/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-ssh-configuration
+
 
 ----
 
