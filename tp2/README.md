@@ -41,8 +41,11 @@ https://terrazone.io/types-of-ssh-keys/
 de base ma clef publique est dans ~/.ssh/id_rsa.pub, et la clef privee dans ~/.ssh/id_rsa. Donc, sur mon server, j'ai fait les commandes : 
 
 root@server2:/# cd /root/.ssh/
+
 root@server2:~/.ssh# touch authorized_keys
+
 root@server2:~/.ssh# ls -l
+
 total 4
 -rw-r--r-- 1 root root   0 Jan 24 02:00 authorized_keys
 -rw-r--r-- 1 root root 142 Jan 11 02:04 known_hosts
