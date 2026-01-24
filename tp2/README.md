@@ -53,15 +53,15 @@ root@server2:~/.ssh#
 
 aprés j'ai copié le contenu de ma clef publique (id_rsa.pub) dans le fichier authorized_keys sur le serveur : 
 
-eduardoramos@MacBookPro-001 ~ % ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.59
+eduardoramos@MacBookPro-001 ~ % ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.xx
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/Users/eduardoramos/.ssh/id_rsa.pub"
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-root@192.168.1.59's password: 
+root@192.168.1.xx's password: 
 
 Number of key(s) added:        1
 
-Now try logging into the machine, with: "ssh -i /Users/eduardoramos/.ssh/id_rsa 'root@192.168.1.59'"
+Now try logging into the machine, with: "ssh -i /Users/eduardoramos/.ssh/id_rsa 'root@192.168.1.xx'"
 and check to make sure that only the key(s) you wanted were added.
 
 eduardoramos@MacBookPro-001 ~ % 
@@ -96,7 +96,7 @@ https://www.it-connect.fr/les-droits-sous-linux/#google_vignette
 
 .ssh/id_rsa est la clef prive, qui doit utiliser pour se connecter au serveur, parce que la clef publique est déjà copiée sur le serveur dans authorized_keys.
 
-eduardoramos@MacBookPro-001 ~ % ssh -i ~/.ssh/id_rsa root@192.168.1.59
+eduardoramos@MacBookPro-001 ~ % ssh -i ~/.ssh/id_rsa root@192.168.1.xx
 
 Linux server2 6.1.0-42-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.159-1 (2025-12-30) x86_64
 
@@ -143,13 +143,13 @@ Apres avoir lu les sources, voici quelques techniques pour sécuriser SSH que j'
     - systemctl restart fail2ban et systemctl enable fail2ban et systemctl status fail2ban pour verifier le status.
     - ps: j'ai utilises des variables internes de Fail2ban pour configurer le nombre de tentatives et le temps de banissement.
         - test:
-        eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.59 
-        testt@192.168.1.59: Permission denied (publickey).
-        eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.59 
-        test@192.168.1.59: Permission denied (publickey).
-        eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.59
-        test@192.168.1.59: Permission denied (publickey).
-        eduardoramos@MacBookPro-001 ~ % ssh root@192.168.1.59
+        eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.xx 
+        testt@192.168.1.xx: Permission denied (publickey).
+        eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.xx 
+        test@192.168.1.xx: Permission denied (publickey).
+        eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.xx
+        test@192.168.1.xx: Permission denied (publickey).
+        eduardoramos@MacBookPro-001 ~ % ssh root@192.168.1.xx
 
         root@server2:~# fail2ban-client status sshd
         Status for the jail: sshd

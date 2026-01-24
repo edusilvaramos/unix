@@ -74,7 +74,7 @@ server2
 pour le domaine, j'ai utiliser la commande man hotname, et j'ai trouveé la synopsis:  [-d|--domain]
 
 root@server2:~# hostname -d
-ufr-info-p6.jussieu.fr
+xxxxxxx.fr
 
 
 ### verification emplacement depots :
@@ -102,7 +102,7 @@ https://www.it-connect.fr/les-fichiers-sources-list/
 ### passwd/shadow :
 
 root@server2:~# cat /etc/shadow | grep -vE ':\*:|:!\*:'
-root:$y$j9T$GAMurk4V5Yd3x0OFwR60O.$MfkHsnD8wZKIl6Cf9wkzCcSIxzSTnPudwZXLOLSRhE1:20464:0:99999:7:::
+root:$y$j9T$GA5Yd3x0OFwR60O.$MfkHSTnPudwZXLOLSRhE1:20464:0:99999:7:::
 messagebus:!:20464::::::
 avahi-autoipd:!:20464::::::
 sshd:!:20464::::::
