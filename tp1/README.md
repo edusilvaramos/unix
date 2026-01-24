@@ -29,7 +29,7 @@ root@server2:~# nano /etc/ssh/sshd_config
 pour la config: J’ai édité le fichier de configuration du serveur SSH (/etc/ssh/sshd_config) et j’ai modifié la partie de la config qui me concerne. donc, "PermitRootLogin yes" et "PasswordAuthentication yes". Après la modification, j’ai redémarré le service SSH pour que la configuration soit prise en compte.
 
 pour Trouver l’adresse IP de la VM - dans Debian: ip a
-Commande sur le pc : ssh root@192.168.1.59
+Commande sur le pc : ssh root@192.168.1.xx
 j’entre le mot de passe root que j’ai défini dans la config.
 connexion réussie, j’arrive sur le shell Debian avec :
 
@@ -106,6 +106,7 @@ root:$y$j9T$GAMurk4V5Yd3x0OFwR60O.$MfkHsnD8wZKIl6Cf9wkzCcSIxzSTnPudwZXLOLSRhE1:2
 messagebus:!:20464::::::
 avahi-autoipd:!:20464::::::
 sshd:!:20464::::::
+
 root@server2:~# 
 
 /etc/shadow : contient les infos de mots de passe. 
@@ -125,6 +126,7 @@ https://www.ionos.fr/digitalguide/serveur/configuration/linux-la-commande-grep/
 ### comptes utilisateurs : 
 
 root@server2:~# cat /etc/passwd | grep -vE 'nologin|sync'
+
 root:x:0:0:root:/root:/bin/bash
 root@server2:~# 
 
