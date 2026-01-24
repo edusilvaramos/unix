@@ -66,14 +66,17 @@ eduardoramos@MacBookPro-001 ~ %
 gestion des permissions :
 
 root@server2:~/.ssh# ls -l
+
 total 8
 -rw-r--r-- 1 root root 585 Jan 24 02:09 authorized_keys
 -rw-r--r-- 1 root root 142 Jan 11 02:04 known_hosts
 root@server2:~/.ssh# chmod 700 /root/.ssh/authorized_keys
+
 root@server2:~/.ssh# ls -l
 total 8
 -rwx------ 1 root root 585 Jan 24 02:09 authorized_keys
 -rw-r--r-- 1 root root 142 Jan 11 02:04 known_hosts
+
 root@server2:~/.ssh# 
 
 chmod = change mode
@@ -144,6 +147,7 @@ Apres avoir lu les sources, voici quelques techniques pour sécuriser SSH que j'
         eduardoramos@MacBookPro-001 ~ % ssh test@192.168.1.59
         test@192.168.1.59: Permission denied (publickey).
         eduardoramos@MacBookPro-001 ~ % ssh root@192.168.1.59
+
         root@server2:~# fail2ban-client status sshd
         Status for the jail: sshd
         |- Filter
@@ -153,7 +157,8 @@ Apres avoir lu les sources, voici quelques techniques pour sécuriser SSH que j'
         `- Actions
         |- Currently banned:	0
         |- Total banned:	0
-        `- Banned IP list:	
+        `- Banned IP list:
+      
         root@server2:~# 
 
 - Utiliser l'authentification par clé publique (comme fait).
