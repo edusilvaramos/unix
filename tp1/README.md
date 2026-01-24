@@ -24,6 +24,8 @@ ps2 : J’ai créé une deuxième VM (server2), parce que sur la première, j’
 
 ### La Connection: 
 
+root@server2:~# nano /etc/ssh/sshd_config
+
 pour la config: J’ai édité le fichier de configuration du serveur SSH (/etc/ssh/sshd_config) et j’ai modifié la partie de la config qui me concerne. donc, "PermitRootLogin yes" et "PasswordAuthentication yes". Après la modification, j’ai redémarré le service SSH pour que la configuration soit prise en compte.
 
 pour Trouver l’adresse IP de la VM - dans Debian: ip a
@@ -33,7 +35,7 @@ connexion réussie, j’arrive sur le shell Debian avec :
 
 root@server2:~#
 
-sources: 
+**sources :**
 
 man 
 https://www.it-connect.fr/chapitres/openssh-configuration-du-serveur-ssh/
@@ -89,7 +91,7 @@ deb http://deb.debian.org/debian/ bookworm-updates main
 sont les depots officiels que j'ai ajouté, dans la phase d'installation de Debian.
 les adresses dans ce fichier sont utilisés par le système pour installer et mettre à jour les applications
 
-Sources :
+**sources :**
 man grep
 
 https://debian-facile.org/doc:systeme:apt:sources.list
@@ -111,7 +113,7 @@ ps: les mots de passe sont hachés !
 
 la commande affiche les comptes avec un mot de passe actif. mais pour les comptes système bloqués ou désactivés, identifiés par les caractères * ou ! , ne apparaissent pas.
 
-Sources :
+**sources :**
 man shadow
 man grep
 man regex
@@ -185,7 +187,7 @@ man fdisk
 
 -------------------------------------------------------------------------
 
-Sources :
+**sources :**
 
 Documents mis à disposition par le professeur  
 Commande Unix " man" 
