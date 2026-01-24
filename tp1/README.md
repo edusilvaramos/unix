@@ -195,3 +195,16 @@ Documents mis à disposition par le professeur
 Commande Unix " man" 
 
 https://www.lemagit.fr/conseil/26-commandes-Linux-pour-administrer-le-stockage#:~:text=L'option%20%2Dh%20affiche%20la,la%20taille%20totale%20du%20répertoire.&text=Affiche%20l'utilisation%20du%20système%20de%20fichiers%20sur%20votre%20machine%20Linux.
+
+
+
+## partie 3 aller plus loin : 
+
+## 3.1 Installation automatique — Preseed :
+
+Preseed sert à automatiser l’installation Debian.
+Au lieu de répondre à la main à toutes les questions de l’installateur, comme j'ai fait (langue, clavier, users etc), on met les réponses dans un fichier de préconfiguration (preseed.cfg). L’installateur lit ce fichier. 
+
+https://next.ink/6917/107141-preseed-debian-automatisez-simplement-installation/
+
+
