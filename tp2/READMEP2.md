@@ -3,7 +3,7 @@
 ## Exercice : Etude des processus UNIX 
 
 ## 1 - 
-command : 
+command : <br>
 root@server2:~# ps aux 
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
 root           1  0.1  0.5 102144 12076 ?        Ss   14:34   0:00 /sbin/init
@@ -202,7 +202,7 @@ tail -f permet d’afficher le contenu d’un fichier de log en temps réel, c�
 dans /var/log/syslog apres la,ncer la commande systemctl restart cron, je peut voir les messages de redémarrage du service cron.
 
 Le fichier /etc/logrotate.conf sert à gérer la rotation des fichiers de logs.
-Il permet d’éviter que les fichiers de logs deviennent trop volumineux en les renommant, compressant ou supprimant automatiquement après un certain temps.
+Il permet d’éviter que les fichiers de logs deviennent trop volumineux en les renommant, compressant ou supprimant automatiquement après un certain temps. toio no mack ? 
 
 La commande dmesg affiche les messages du noyau Linux, notamment la détection du matériel au démarrage.
 Sur ma machine, Linux détecte un processeur Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz.
