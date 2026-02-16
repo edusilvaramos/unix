@@ -58,60 +58,52 @@ root@server2:~#
 ## Exercice : argument type et droits
 
 ```
+
 #!/bin/bash
 
 OBJECT="$1"
 USER="${USER}"
 
-# check n parametres
+#func
+getInfo() {
+  local name=$OBJECT
+
+  echo "$name is accessible to $USER in :"
+
+  if [ -r "$name" ]; then echo "read"; fi
+  if [ -w "$name" ]; then echo "write"; fi
+  if [ -x "$name" ]; then echo "exec"; fi
+}
+
+# check n param
 if [ $# -ne 1 ]; then
   echo "Erreur : Il fault 1 paramentre pour ce shell"
   exit 1
 fi
 
+[ ! -f $OBJECT ] && echo "$OBJECT does not exist."
+
+
 # check type
 #dir
-if [ -d "$OBJECT" ]; then
-    echo $OBJECT" is a directory."
-        echo "and is acessible to $USER en : "
+if [ -d "$OBJECT" ]; then echo "$OBJECT is a directory and : " getInfo  ; fi
 
-if [ -x "$OBJECT" ]; then
-    echo "exec"
-fi
-if [ -w "$OBJECT" ]; then
-    echo "writin"
-fi
-if [ -r "$OBJECT" ]; then
-    echo "read"
-fi
-
-    else
 #file
 if [ -f "$OBJECT" ]; then
         echo "$OBJECT is a file and : "
-if [ -s "$OBJECT" ]; then
-    echo "is not empty."
+        if [ -s "$OBJECT" ]; then
+            echo "is not empty."
+                getInfo
+            else
+            echo 'is empty.'
+        fi
 fi
-        echo "is acessible to $USER en : "
 
-if [ -x "$OBJECT" ]; then
-    echo "exec"
-fi
-if [ -w "$OBJECT" ]; then
-    echo "writin"
-fi
-if [ -r "$OBJECT" ]; then
-    echo "read"
-fi
-else
-    echo "$OBJECT does not exist."
-fi
-fi
 ```
 
 source:
  https://linuxize.com/post/bash-check-if-file-exists/
-
+ https://www.it-connect.fr/les-fonctions-en-bash-scripting-linux/
 
 
 ## Exercice : Afficher le contenu d’un r´epertoire
