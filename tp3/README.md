@@ -18,7 +18,8 @@ do
     echo "Parametre: $i"
 done
 ```
-
+sortie: 
+```
 root@server2:~# nano analyse.sh
 root@server2:~# ./analyse.sh param1 param2 param3
 Bonjour, vous avez rentre 3 de parametres parametres.
@@ -32,7 +33,7 @@ Parametre: param1
 Parametre: param2
 Parametre: param3
 root@server2:~# 
-
+```
 ## Exercice : v´erification du nombre de param`etres
 ```
 #!/bin/bash
@@ -45,13 +46,14 @@ fi
 CONCAT="$1$2"
 echo "$CONCAT"
 ```
-
+sortie: 
+```
 root@server2:~# ./concat.sh Edu ardo
 Eduardo
 root@server2:~# ./concat.sh Edu ardo Ramos
 Erreur : il faut exactement 2 paramètres.
 root@server2:~# 
-
+```
 
 ## Exercice : argument type et droits
 
