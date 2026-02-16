@@ -57,7 +57,60 @@ root@server2:~#
 
 ## Exercice : argument type et droits
 
+```
+#!/bin/bash
 
+OBJECT="$1"
+USER="${USER}"
+
+# check n parametres
+if [ $# -ne 1 ]; then
+  echo "Erreur : Il fault 1 paramentre pour ce shell"
+  exit 1
+fi
+
+# check type
+#dir
+if [ -d "$OBJECT" ]; then
+    echo $OBJECT" is a directory."
+        echo "and is acessible to $USER en : "
+
+if [ -x "$OBJECT" ]; then
+    echo "exec"
+fi
+if [ -w "$OBJECT" ]; then
+    echo "writin"
+fi
+if [ -r "$OBJECT" ]; then
+    echo "read"
+fi
+
+    else
+#file
+if [ -f "$OBJECT" ]; then
+        echo "$OBJECT is a file and : "
+if [ -s "$OBJECT" ]; then
+    echo "is not empty."
+fi
+        echo "is acessible to $USER en : "
+
+if [ -x "$OBJECT" ]; then
+    echo "exec"
+fi
+if [ -w "$OBJECT" ]; then
+    echo "writin"
+fi
+if [ -r "$OBJECT" ]; then
+    echo "read"
+fi
+else
+    echo "$OBJECT does not exist."
+fi
+fi
+```
+
+source:
+ https://linuxize.com/post/bash-check-if-file-exists/
 
 
 
