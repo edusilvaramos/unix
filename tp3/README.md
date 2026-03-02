@@ -13,7 +13,7 @@ echo
 echo "Le 3eme parametre est: $3"
 echo
 echo "Voici la liste des parametres :"
-for i in $@
+for i in "$@"
 do
     echo "Parametre: $i"
 done
@@ -61,52 +61,58 @@ root@server2:~#
 
 #!/bin/bash
 
-OBJECT="$1"
-USER="${USER}"
-
-#func
-getInfo() {
-  local name=$OBJECT
-
-  echo "$name is accessible to $USER in :"
-
-  if [ -r "$name" ]; then echo "read"; fi
-  if [ -w "$name" ]; then echo "write"; fi
-  if [ -x "$name" ]; then echo "exec"; fi
-}
-
-# check n param
+# Vérification du nombre de paramètres
 if [ $# -ne 1 ]; then
-  echo "Erreur : Il fault 1 paramentre pour ce shell"
+  echo "Erreur : il faut exactement 1 paramètre."
   exit 1
 fi
 
-[ ! -f $OBJECT ] && echo "$OBJECT does not exist."
+OBJECT="$1"
+USER="$USER"
 
+# Si n'existe pas
+if [ ! -e "$OBJECT" ]; then
+  echo "Le fichier $OBJECT n'existe pas."
+  exit 1
+fi
 
-# check type
-#dir
-if [ -d "$OBJECT" ]; then echo "$OBJECT is a directory and : " getInfo  ; fi
+# Fonction permissions
+getInfo() {
+  echo "\"$OBJECT\" est accessible par $USER en :"
+  if [ -r "$OBJECT" ]; then echo "lecture"; fi
+  if [ -w "$OBJECT" ]; then echo "écriture"; fi
+  if [ -x "$OBJECT" ]; then echo "exécution"; fi
+}
 
-#file
-if [ -f "$OBJECT" ]; then
-        echo "$OBJECT is a file and : "
-        if [ -s "$OBJECT" ]; then
-            echo "is not empty."
-                getInfo
-            else
-            echo 'is empty.'
-        fi
+# Type
+if [ -d "$OBJECT" ]; then
+  echo "Le fichier $OBJECT est un répertoire."
+  getInfo
+elif [ -f "$OBJECT" ]; then
+  if [ -s "$OBJECT" ]; then
+    echo "Le fichier $OBJECT est un fichier ordinaire qui n'est pas vide."
+  else
+    echo "Le fichier $OBJECT est un fichier ordinaire qui est vide."
+  fi
+  getInfo
+else
+  echo "Le fichier $OBJECT existe, mais ce n'est ni un fichier ordinaire ni un répertoire."
+  getInfo
 fi
 
 ```
 
 source:
- https://linuxize.com/post/bash-check-if-file-exists/
- https://www.it-connect.fr/les-fonctions-en-bash-scripting-linux/
+ https://linuxize.com/post/bash-check-if-file-exists/ <br>
+ https://www.it-connect.fr/les-fonctions-en-bash-scripting-linux/ <br>s
 
-
+ 
 ## Exercice : Afficher le contenu d’un r´epertoire
+
+
+
+
+
 ## Exercice : Lister les utilisateurs
 ## Exercice : Mon utilisateur existe t’il
 ## Exercice : Creation utilisateur
