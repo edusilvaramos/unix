@@ -268,7 +268,48 @@ La commande for user in $(cat /etc/passwd) découpe le contenu par espaces et re
 
 
 ## Exercice : Mon utilisateur existe t’il
+
+```
+#!/bin/bash
+
+# n param 
+if [ "$#" -ne 1 ]; then
+  exit 1
+fi
+
+arg="$1"
+
+# arg est numbre
+if [[ "$arg" =~ ^[0-9]+$ ]]; then
+  # if le 3e champ (UID) == arg print UID
+  awk -F: -v uid="$arg" '$3 == uid { print $3 }' /etc/passwd
+else
+  # cherche par login
+  awk -F: -v login="$arg" '$1 == login { print $3 }' /etc/passwd
+fi
+
+```
+sortie:
+
+root@server2:~# nano user-exists.sh
+root@server2:~# chmod +x user-exists.sh
+root@server2:~# ./user-exists.sh root
+0
+root@server2:~# 
+
+or 
+
+root@server2:~# ./user-exists.sh user
+root@server2:~# 
+root@server2:~# ./user-exists.sh daemon
+1
+root@server2:~# ./user-exists.sh backup
+34
+root@server2:~# 
+
 ## Exercice : Creation utilisateur
+
+
 ## Exercice : lecture au clavier
 ## Exercice : appr´eciation
 ## 
