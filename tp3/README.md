@@ -392,6 +392,8 @@ Chercher une chaîne : tape / mot puis Entrée
 Occurrence suivante : n
 
 ```
+
+```
 #!/bin/bash
 
 #  repertoire
