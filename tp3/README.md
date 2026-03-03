@@ -310,8 +310,188 @@ root@server2:~#
 ## Exercice : Creation utilisateur
 
 
+```
+#!/bin/bash
+
+set -e
+
+# user 
+if [ "$(id -u)" -ne 0 ]; then
+  echo "Erreur: ce script est exec by root."
+  exit 1
+fi
+
+# if user exists
+if [ ! -x "./user-exists.sh" ]; then
+  echo "Erreur: ./user-exists.sh introuvable ou non excutable."
+  echo "Astuce: chmod +x user-exists.sh"
+  exit 1
+fi
+
+# make user
+read -r -p "Login: " login
+read -r -p "Nom: " nom
+read -r -p "Prenom: " prenom
+read -r -p "UID: " uid
+read -r -p "GID: " gid
+read -r -p "Commentaires: " comments
+
+# rifier login/UID
+uid_login=$(./user-exists.sh "$login" || true)
+uid_uid=$(./user-exists.sh "$uid" || true)
+
+# Si existe 
+if [ -n "$uid_login" ]; then
+  echo "$uid_login"
+  exit 0
+fi
+
+if [ -n "$uid_uid" ]; then
+  echo "$uid_uid"
+  exit 0
+fi
+
+# if  /home/login n'existe   
+if [ -d "/home/$login" ]; then
+  echo "Erreur: /home/$login existe d  j  ."
+  exit 1
+fi
+
+# create user
+useradd -m -d "/home/$login" -u "$uid" -g "$gid" -c "$nom $prenom - $comments" "$login"  
+
+# Mot de passe to user
+passwd "$login"
+
+echo "OK: $login"
+
+```
+
+sortie:
+
+```
+
+root@server2:~# ./create-user.sh 
+Login: edu
+Nom: edu
+Prenom: edu
+UID: 1234
+GID: 12345
+Commentaires: 
+useradd: group '12345' does not exist
+root@server2:~# 
+
+
 ## Exercice : lecture au clavier
+
+Quitter more : q
+Avancer d’une ligne : Enter
+Avancer d’une page :  Space
+Remonter d’une page : b
+Chercher une chaîne : tape / mot puis Entrée
+Occurrence suivante : n
+
+```
+#!/bin/bash
+
+#  repertoire
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 repertoire"
+  exit 1
+fi
+
+rep="$1"
+
+#  repertoire  ???
+if [ ! -d "$rep" ]; then
+  echo "Erreur: ce n'est pas un repertoire"
+  exit 1
+fi
+
+# look tous les fichiers
+for f in "$rep"/*; do
+
+  # if pas un fichier
+  if [ ! -f "$f" ]; then
+    continue
+  fi 
+
+  # tester si c'est un fichier texte
+  file "$f" | grep -qi "text"
+  if [ $? -eq 0 ]; then
+
+    echo -n "Voulez-vous visualiser le fichier $f ? (o/n) "
+    read reponse
+
+    if [ "$reponse" = "o" ] || [ "$reponse" = "O" ]; then
+      more "$f"
+    fi
+
+  fi
+done
+
+```
+
+
+
 ## Exercice : appr´eciation
-## 
 
 
+```
+#!/bin/bash
+
+while true
+do
+  echo -n "Entrez une note (0-20) (ou q pour quitter) : "
+  read note
+
+  # quitter
+  if [ "$note" = "q" ]; then
+    echo "Au revoir !"
+    break
+  fi
+
+  # verifier si c'est un nombre
+  if ! [[ "$note" =~ ^[0-9]+$ ]]; then
+    echo "Erreur : veuillez entrer un nombre (ou q)."
+    continue
+  fi
+
+  # verifier intervalle 0-20 (optionnel mais propre)
+  if [ "$note" -lt 0 ] || [ "$note" -gt 20 ]; then
+    echo "Erreur : la note doit être entre 0 et 20."
+    continue
+  fi
+
+  # appreciation
+  if [ "$note" -ge 16 ]; then
+    echo "très bien"
+  elif [ "$note" -ge 14 ]; then
+    echo "bien"
+  elif [ "$note" -ge 12 ]; then
+    echo "assez bien"
+  elif [ "$note" -ge 10 ]; then
+    echo "moyen"
+  else
+    echo "insuffisant"
+  fi
+done
+
+```
+
+sortie:
+```
+root@server2:~# ./appreciation.sh
+Entrez une note (ou q pour quitter) : 4
+Entrez une note (ou q pour quitter) : q
+Au revoir !
+root@server2:~# nano appreciation.sh
+root@server2:~# ./appreciation.sh
+Entrez une note (0-20) (ou q pour quitter) : 5
+insuffisant
+Entrez une note (0-20) (ou q pour quitter) : 20
+très bien
+Entrez une note (0-20) (ou q pour quitter) : q
+Au revoir !
+root@server2:~# 
+```
